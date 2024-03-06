@@ -122,7 +122,6 @@ public class Main {
                 multiplicador = multiplicador + 1;
             }
 
-
             tabuada = tabuada + 1;
         }
     }
