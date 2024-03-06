@@ -26,7 +26,24 @@ public class FuncoesMain {
 
 
     public static void main(String[] args) {
+        String valorTexto = transformarTextoEmMaiusculo("asdasdas");
 
+        imprimeUmTextoComLetrasMaiusculas("Seja bem-vindo");
+
+        imprimeUmTextoComLetrasMaiusculas("lucas");
+
+
+    }
+
+    // Função que recebe parametro
+    public static void imprimeUmTextoComLetrasMaiusculas(String texto){
+        System.out.println(transformarTextoEmMaiusculo(texto));
+    }
+
+    // Função que recebe parametro e retorna valor
+    public static String transformarTextoEmMaiusculo(String texto){
+        String textoEmMaiusculo = texto.toUpperCase();
+        return textoEmMaiusculo;
     }
 
 }
