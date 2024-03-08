@@ -1,12 +1,17 @@
-package Exercios_Aula1;
+package Exercicios_Aula1;
 
-import java.sql.SQLOutput;
+import java.util.Scanner;
 
 public class CalculoDeArea {
     public static void main(String[] args) {
 
-        double base = 6.0;
-        double altura = 4.0;
+        Scanner leitor = new Scanner(System.in);
+
+        System.out.println("Informe a base: ");
+        double base = leitor.nextDouble();
+
+        System.out.println("Informe a altura: ");
+        double altura = leitor.nextDouble();
 
         double area = calcularArea(base,altura);
 

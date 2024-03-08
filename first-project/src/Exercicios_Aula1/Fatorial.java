@@ -1,4 +1,4 @@
-package Exercios_Aula1;
+package Exercicios_Aula1;
 
 public class Fatorial {
 
