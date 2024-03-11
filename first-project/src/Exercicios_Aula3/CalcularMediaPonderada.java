@@ -60,15 +60,7 @@ public class CalcularMediaPonderada {
 
             if(textoIgual(escolhaDoUsuario,"4")){
 
-                quebrarLinhas(2);
-                System.out.println("Lista de Alunos!");
-                quebrarLinhas(1);
-
-                for (Aluno aluno : alunos) {
-                    System.out.println(aluno);
-                }
-
-                quebrarLinhas(2);
+                listarAlunos(alunos);
             }
 
 
@@ -85,15 +77,22 @@ public class CalcularMediaPonderada {
 
     }
 
-    private static void exibeMediaDoAluno(List<Aluno> alunos) {
-
+    private static void listarAlunos(List<Aluno> alunos) {
+        quebrarLinhas(2);
         System.out.println("Lista de Alunos!");
-
-        List<Aluno> alunosEscolhidos = new ArrayList<>();
+        quebrarLinhas(1);
 
         for (Aluno aluno : alunos) {
             System.out.println(aluno);
         }
+
+        quebrarLinhas(2);
+    }
+
+    private static void exibeMediaDoAluno(List<Aluno> alunos) {
+        listarAlunos(alunos);
+
+        List<Aluno> alunosEscolhidos = new ArrayList<>();
 
         String alunoEscolhido = receberUmTextoDoConsole("Digite o nome do Aluno Desejado: ");
 
@@ -102,7 +101,6 @@ public class CalcularMediaPonderada {
                 alunosEscolhidos.add(aluno);
             }
         }
-
 
         exibeMediaDaTurma(alunosEscolhidos, true);
     }
