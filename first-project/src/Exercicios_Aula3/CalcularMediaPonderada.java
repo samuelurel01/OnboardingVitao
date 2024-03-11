@@ -137,7 +137,7 @@ public class CalcularMediaPonderada {
 
             if(textoIgual("4", opcao)) {
                 for (Aluno aluno : alunos) {
-                    somaNotas = somaNotas + aluno.getNota1() + aluno.getNota2() + aluno.getNota3();
+                    somaNotas += aluno.calcularMedia();
                 }
             }
 

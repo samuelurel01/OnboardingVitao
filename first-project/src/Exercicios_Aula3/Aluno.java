@@ -19,7 +19,21 @@ public class Aluno {
     }
 
     public void setNome(String nome) {
-        this.nome = nome;
+        if(nome != null){
+            char[] arrayDoNome = nome.toCharArray(); // lucas -> new char[]{'l','u','c','a','s'}
+            String primeraLetraMaiuscula = (arrayDoNome[0] + "").toUpperCase();
+            String restoDoNome = "";
+
+            for (int i = 1; i < nome.length(); i++) {
+                restoDoNome += arrayDoNome[i];
+            }
+
+            restoDoNome = restoDoNome.toLowerCase();
+
+
+            this.nome = primeraLetraMaiuscula + restoDoNome;
+
+        }
     }
 
     public Date getDataNascimento() {
@@ -72,5 +86,9 @@ public class Aluno {
                 ", nota2=" + nota2 +
                 ", nota3=" + nota3 +
                 '}';
+    }
+
+    public double calcularMedia(){
+       return (getNota1() + getNota2() + getNota3())/3;
     }
 }
