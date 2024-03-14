@@ -19,6 +19,7 @@ public class CalcularMediaPonderada {
 
         System.out.println("Seja Bem-Vindo ao programa de calculo de média!");
 
+
         while (programaEstaAtivo){
 
             quebrarLinhas(1);
