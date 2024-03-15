@@ -80,7 +80,7 @@ public class CrudCarro {
                 int codigoDoCarroQuevaiSerRemovido = receberNumeroNoConsole("Informe o codigo do carro: ");
                 int posicaoDoCarroASerRemovido = procurarPosicaoCarroNaListaApartirDoCodigo(codigoDoCarroQuevaiSerRemovido, carros);
                 if(posicaoDoCarroASerRemovido== -1){
-                    System.out.println("Nenhum carro foi encontrado para esse codigo ");
+                    System.out.println("Nenhum carro foi encontrado para esse codigo  ");
                 }else {
                     carros.remove(posicaoDoCarroASerRemovido);
 
