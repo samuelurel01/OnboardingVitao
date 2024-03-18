@@ -1,8 +1,5 @@
 package Exercicios_Aula4.TarefaHeranca;
 
-import Exercicios_Aula3.Aluno;
-import Exercicios_Aula3.crudCarro.Carro;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -14,7 +11,6 @@ public class CadastroAnimal {
         executarProgramaDeCadastroDeAnimais();
 
     }
-
 
     public static void executarProgramaDeCadastroDeAnimais(){
         boolean programaEstaAtivo = true;
@@ -66,11 +62,6 @@ public class CadastroAnimal {
                 System.out.println("Programa encerrado");
                 programaEstaAtivo = false;
             }
-
-
-
-
-
         }
 
 
@@ -79,6 +70,12 @@ public class CadastroAnimal {
 
     private static Carnivoro cadastrarAnimalCarnivoro(){
         Carnivoro novoAnimalCarnivoro = new Carnivoro();
+
+        String nomeDoAnimal = receberUmTextoDoConsole("Informe o nome do animal:");
+        novoAnimalCarnivoro.setNome(nomeDoAnimal);
+
+        String descricaoDoAnimal = receberUmTextoDoConsole("Informe a descrição do animal:");
+        novoAnimalCarnivoro.setDescricao(descricaoDoAnimal);
 
         String especieDoAnimal = receberUmTextoDoConsole("Informe a espécie do animal:");
         novoAnimalCarnivoro.setEspecieDoAnimal(especieDoAnimal);
@@ -93,6 +90,12 @@ public class CadastroAnimal {
 
     private static Herbivoro cadastraranimalHerbivoro(){
         Herbivoro novoanimalHerbivoro = new Herbivoro();
+
+        String nomeDoAnimal = receberUmTextoDoConsole("Informe o nome do animal:");
+        novoanimalHerbivoro.setNome(nomeDoAnimal);
+
+        String descricaoDoAnimal = receberUmTextoDoConsole("Informe a descrição do animal:");
+        novoanimalHerbivoro.setDescricao(descricaoDoAnimal);
 
         String especieDoAnimal = receberUmTextoDoConsole("Informe a especie do animal:");
         novoanimalHerbivoro.setEspecieDoAnimal(especieDoAnimal);
@@ -157,7 +160,6 @@ public class CadastroAnimal {
         for(Carnivoro carnivoro : carnivoros){
             System.out.println(carnivoro);
         }
-
 
         for(Herbivoro herbivoro : herbivoros){
             System.out.println(herbivoro);

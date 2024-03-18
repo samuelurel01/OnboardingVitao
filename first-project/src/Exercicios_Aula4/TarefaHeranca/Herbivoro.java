@@ -4,7 +4,7 @@ public class Herbivoro extends Animal {
 
     private String alimentoHerbivoro;
 
-    private String especieDoAnimal;
+    private String especieDoAnimal; // Poderia estar na classe pai
 
     public String getEspecieDoAnimal() {
         return especieDoAnimal;

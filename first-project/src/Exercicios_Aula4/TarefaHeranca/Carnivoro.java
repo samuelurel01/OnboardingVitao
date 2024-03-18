@@ -4,7 +4,7 @@ public class Carnivoro extends Animal {
 
     private String alimentoCarnivoro;
 
-    private String especieDoAnimal;
+    private String especieDoAnimal; // Poderia estar na classe pai
 
     public String getEspecieDoAnimal() {
         return especieDoAnimal;
@@ -26,6 +26,11 @@ public class Carnivoro extends Animal {
 
     @Override
     public String devolverCaracteristicas() {
-        return super.devolverCaracteristicas();
+        return "Isso é um animal carnivoro";
+    }
+
+    @Override
+    public String toString(){
+        return "{Nome: " + getNome() + " Descrição: " + getDescricao() + " Alimento: " + alimentoCarnivoro + "}";
     }
 }
