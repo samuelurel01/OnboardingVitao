@@ -34,4 +34,12 @@ public abstract class AbstractUsuario {
     public void setSenha(String senha) {
         this.senha = senha;
     }
+
+    public PerfilUsuario getPerfil() {
+        return perfil;
+    }
+
+    public void setPerfil(PerfilUsuario perfil) {
+        this.perfil = perfil;
+    }
 }
