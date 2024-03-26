@@ -1,5 +1,6 @@
 package CrudLoja;
 
+import CrudLoja.Produtos.Produto;
 import CrudLoja.Usuarios.PerfilUsuario;
 import CrudLoja.Usuarios.Usuario;
 
@@ -83,6 +84,12 @@ public class ExecuacaoLojaOnline {
     }
 
     public static void exibirFuncionalidadesParaCliente(){
+
+        System.out.println("Opções para CLIENTES:");
+        System.out.println();
+        System.out.println();
+        System.out.println();
+
 
     }
 
@@ -196,6 +203,17 @@ public class ExecuacaoLojaOnline {
         }
 
         return false;
+    }
+
+    public void adicionarProdutoNaLista(Produto produto){
+        loja.getProdutos().add(produto);
+    }
+
+    public double calcularTotalCompra(){
+        double total = 0;
+        for (Produto produto: loja.getUsuarioLogado().getProdutos()){
+
+        }
     }
 
 }
