@@ -21,8 +21,7 @@ public class PessoaRepository {
 
     public void criarPessoa(String nome, Date nascimento){
         try {
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String dataNascimentoFormatada = sdf.format(nascimento);
+            String dataNascimentoFormatada = formatarDate(nascimento);
             String insertQuery = "INSERT INTO Pessoa (nome,data_nascimento) VALUES('" + nome + "','" + dataNascimentoFormatada + "')";
 
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(insertQuery);
@@ -57,5 +56,48 @@ public class PessoaRepository {
 
 
         return pessoas;
+    }
+
+    public void atualizar(Pessoa pessoaAtualizada){
+        try {
+            String query = "UPDATE Pessoa SET nome = ?, data_nascimento = ? where id = ?";
+            PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
+            preparedStatement.setString(1,pessoaAtualizada.getNome());
+            preparedStatement.setString(2,formatarDate(pessoaAtualizada.getDataNascimento()));
+            preparedStatement.setString(3,pessoaAtualizada.getId().toString());
+
+           int linhasAfetadas = preparedStatement.executeUpdate();
+
+           if(linhasAfetadas > 0){
+               System.out.println("Pessoa atualizada com sucesso!");
+           }else{
+               System.out.println("Nenhuma pessoa encontrada para esse ID.");
+           }
+        }catch (Exception error){
+            System.out.println(error);
+        }
+    }
+
+    public void deletarPorId(Integer id){
+        try {
+            String query = "DELETE FROM Pessoa WHERE id = ?";
+            PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
+            preparedStatement.setString(1,id.toString());
+
+            int linhasAfetadas = preparedStatement.executeUpdate();
+
+            if(linhasAfetadas > 0){
+                System.out.println("Pessoa deletada com sucesso!");
+            }else{
+                System.out.println("Nenhuma pessoa encontrada para esse ID.");
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+    }
+
+    public String formatarDate(Date data){
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        return sdf.format(data);
     }
 }

@@ -24,9 +24,12 @@ public class App
         String password = "vitor";
 
         try(Connection connection = DriverManager.getConnection(url,username,password)){
-            System.out.println("Você conseguiu conectar o banco de dados!");
+//            System.out.println("Você conseguiu conectar o banco de dados!");
             PessoaRepository pessoaRepository = new PessoaRepository(connection);
-            pessoaRepository.criarPessoa("Victor",new Date(2000,1,3));
+//            pessoaRepository.criarPessoa("Victor",new Date(2000,1,3));
+
+//            pessoaRepository.atualizar(new Pessoa(1,"João victor",new Date()));
+            pessoaRepository.deletarPorId(4);
 
             for ( Pessoa pessoa : pessoaRepository.listar()) {
                 System.out.println(pessoa);
