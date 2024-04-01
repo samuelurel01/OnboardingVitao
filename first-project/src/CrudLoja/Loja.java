@@ -1,7 +1,6 @@
 package CrudLoja;
 
 import CrudLoja.Produtos.Produto;
-import CrudLoja.Usuarios.AbstractUsuario;
 import CrudLoja.Usuarios.Usuario;
 
 import java.util.ArrayList;
@@ -53,6 +52,18 @@ public class Loja {
 
     public void setProdutos(List<Produto> produtos) {
         this.produtos = produtos;
+    }
+
+    public int buscarPosicaoDoUsuarioPeloCodigo(String email){
+
+        for (int i = 0; i < getUsuarios().size(); i++) {
+            Usuario usuario = getUsuarios().get(i);
+            if(usuario.getEmail().equals(email)){
+                return i;
+            }
+        }
+
+        return -1;
     }
 
 }

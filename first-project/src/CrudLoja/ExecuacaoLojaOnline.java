@@ -87,55 +87,63 @@ public class ExecuacaoLojaOnline {
     }
 
     public static void exibirFuncionalidadesParaCliente(){
-        // O processo deve se repetir ate o cliente deslogar
-        System.out.println("Opções para CLIENTES:");
-        System.out.println("1 - Comprar Produtos");
-        System.out.println("2 - Listar produtos que foram comprados");
-        System.out.println("3 - Exibir total comprado");
-        System.out.println("4 - Logout");
+        boolean exibirOpcoesDeCliente = true;
 
-        String escolhaDoCliente = pegarEscolhaDoUsuarioAPartirDasOpcoes("Escolha uma das opções disponiveis para o CLIENTE:", new String[]{"1", "2", "3"});
+        while (exibirOpcoesDeCliente) {
 
-        if(textoIgual(escolhaDoCliente, "1")){
-            // O usuario deve escolher o produto que quer comprar
-            // E para o usuario selecionar ele deve saber quais são os produtos disponiveis, na loja
-            //Pegar  a escolha do usuario e adicionar na lista.
+            // O processo deve se repetir ate o cliente deslogar
+            System.out.println("Opções para CLIENTES:");
+            System.out.println("1 - Comprar Produtos");
+            System.out.println("2 - Listar produtos que foram comprados");
+            System.out.println("3 - Exibir total comprado");
+            System.out.println("4 - Logout");
 
-            // Para o usuario escolher o produto que deseja compra, ele tem que ter acesso a lista de produtos da loja.
-            //Atráves da lista que  o cliente tiver acesso, ele vai selecionar um produto dentro dela a partir do codigo.
-            //Pegar o produto selecionado pelo cliente e adicionar na lista de produtos do cliente.
+            String escolhaDoCliente = pegarEscolhaDoUsuarioAPartirDasOpcoes("Escolha uma das opções disponiveis para o CLIENTE:", new String[]{"1", "2", "3","4"});
 
-            listarProdutos(loja.getProdutos());
-            int numeroInformado = receberNumeroNoConsole("Qual o codigo do produto desejado");
-            int posicaoDoProduto =  procurarPosicaoDoProdutoNaListaApartirDoCodigo(numeroInformado, loja.getProdutos());
+            if (textoIgual(escolhaDoCliente, "1")) {
+                // O usuario deve escolher o produto que quer comprar
+                // E para o usuario selecionar ele deve saber quais são os produtos disponiveis, na loja
+                //Pegar  a escolha do usuario e adicionar na lista.
 
-            if(posicaoDoProduto == -1){
-                System.out.println("Codigo informado não pertence a nenhum produto cadastrado.");
+                // Para o usuario escolher o produto que deseja compra, ele tem que ter acesso a lista de produtos da loja.
+                //Atráves da lista que  o cliente tiver acesso, ele vai selecionar um produto dentro dela a partir do codigo.
+                //Pegar o produto selecionado pelo cliente e adicionar na lista de produtos do cliente.
 
-            }else{
-                Produto produtoSelecionadoPeloUsuario = loja.getProdutos().remove(posicaoDoProduto);
+                listarProdutos(loja.getProdutos());
+                int numeroInformado = receberNumeroNoConsole("Qual o codigo do produto desejado");
+                int posicaoDoProduto = procurarPosicaoDoProdutoNaListaApartirDoCodigo(numeroInformado, loja.getProdutos());
+
+                if (posicaoDoProduto == -1) {
+                    System.out.println("Codigo informado não pertence a nenhum produto cadastrado.");
+
+                } else {
+                    Produto produtoSelecionadoPeloUsuario = loja.getProdutos().remove(posicaoDoProduto);
 
 
-                loja.getUsuarioLogado().getProdutos().add(produtoSelecionadoPeloUsuario);
-                System.out.println(" O produto " + produtoSelecionadoPeloUsuario.getNome() + " foi comprado com sucesso! ");
+                    loja.getUsuarioLogado().getProdutos().add(produtoSelecionadoPeloUsuario);
+                    System.out.println(" O produto " + produtoSelecionadoPeloUsuario.getNome() + " foi comprado com sucesso! ");
+                }
+
+
             }
 
+            if (textoIgual(escolhaDoCliente, "2")) {
 
+                listarProdutos(loja.getUsuarioLogado().getProdutos());
 
+            }
 
+            if (textoIgual(escolhaDoCliente, "3")) {
+                System.out.println(" o total comprado foi de: R$ " + calcularTotalCompra());
+            }
+
+            if(textoIgual(escolhaDoCliente,"4")){
+                exibirOpcoesDeCliente = false;
+                int posicaoDoUsuarioLogado = loja.buscarPosicaoDoUsuarioPeloCodigo(loja.getUsuarioLogado().getEmail());
+                loja.getUsuarios().get(posicaoDoUsuarioLogado).setProdutos(loja.getUsuarioLogado().getProdutos());
+            }
 
         }
-
-        if(textoIgual(escolhaDoCliente, "2")){
-
-            listarProdutos(loja.getUsuarioLogado().getProdutos());
-
-        }
-
-    if(textoIgual(escolhaDoCliente, "3")){
-
-        System.out.println(" o total comprado foi de: R$ " + calcularTotalCompra());
-    }
 
 
     }
