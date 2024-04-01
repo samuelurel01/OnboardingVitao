@@ -116,7 +116,7 @@ public class ExecuacaoLojaOnline {
                 Produto produtoSelecionadoPeloUsuario = loja.getProdutos().remove(posicaoDoProduto);
 
 
-                loja.getUsuarioLogado().getProdutos().add(produtoSelecionadoPeloUsuario);
+                    loja.getUsuarioLogado().getProdutos().add(produtoSelecionadoPeloUsuario);
                 System.out.println(" O produto " + produtoSelecionadoPeloUsuario.getNome() + " foi comprado com sucesso! ");
             }
 
