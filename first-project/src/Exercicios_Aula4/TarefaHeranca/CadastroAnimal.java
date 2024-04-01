@@ -151,6 +151,7 @@ public class CadastroAnimal {
 
         return escolhaDoUsuario;
     }
+
     public static void listarAnimais(List<Carnivoro> carnivoros, List<Herbivoro> herbivoros){
         quebrarLinhas(2);
 

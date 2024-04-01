@@ -3,6 +3,8 @@ package CrudLoja.Produtos;
 // Deve existir CRUD de produto, mas só quem é funcionario pode realizar isso.
 public class Produto {
 
+    private static int ultimoCodigoCriado = 0;
+
     // Esse código deve ser gerado automaticamente.
     private Integer codigo;
 
@@ -43,4 +45,23 @@ public class Produto {
     public void setValor(Double valor) {
         this.valor = valor;
     }
+
+
+    public Produto(String nome, String descricao, Double valor) {
+        setNome(nome);
+        setDescricao(descricao);
+        setValor(valor);
+        setCodigo(++ultimoCodigoCriado);
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "codigo=" + codigo +
+                ", nome='" + nome + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", valor=" + valor +
+                '}';
+    }
 }
+

@@ -1,11 +1,9 @@
 package CrudLoja;
 
+import CrudLoja.Produtos.Produto;
 import CrudLoja.Usuarios.PerfilUsuario;
 import CrudLoja.Usuarios.Usuario;
 
-import java.lang.reflect.Type;
-import java.sql.Array;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -28,7 +26,6 @@ public class ExecuacaoLojaOnline {
     static Loja loja = new Loja("Lojinha do Victor");
 
     public static void main(String[] args) {
-        escolherSeOUsuarioEClienteOuFuncionario();
         executarProgramaDeCrud();
 
 
@@ -65,6 +62,13 @@ public class ExecuacaoLojaOnline {
 
             }
 
+            if (textoIgual(escolhaDoUsuario, "3")){
+                System.out.println("O programa foi encerrado com sucesso!");
+                programaEstaAtivo = false;
+            }
+
+
+
 
         }
 
@@ -83,17 +87,123 @@ public class ExecuacaoLojaOnline {
     }
 
     public static void exibirFuncionalidadesParaCliente(){
+        // O processo deve se repetir ate o cliente deslogar
+        System.out.println("Opções para CLIENTES:");
+        System.out.println("1 - Comprar Produtos");
+        System.out.println("2 - Listar produtos que foram comprados");
+        System.out.println("3 - Exibir total comprado");
+        System.out.println("4 - Logout");
+
+        String escolhaDoCliente = pegarEscolhaDoUsuarioAPartirDasOpcoes("Escolha uma das opções disponiveis para o CLIENTE:", new String[]{"1", "2", "3"});
+
+        if(textoIgual(escolhaDoCliente, "1")){
+            // O usuario deve escolher o produto que quer comprar
+            // E para o usuario selecionar ele deve saber quais são os produtos disponiveis, na loja
+            //Pegar  a escolha do usuario e adicionar na lista.
+
+            // Para o usuario escolher o produto que deseja compra, ele tem que ter acesso a lista de produtos da loja.
+            //Atráves da lista que  o cliente tiver acesso, ele vai selecionar um produto dentro dela a partir do codigo.
+            //Pegar o produto selecionado pelo cliente e adicionar na lista de produtos do cliente.
+
+            listarProdutos(loja.getProdutos());
+            int numeroInformado = receberNumeroNoConsole("Qual o codigo do produto desejado");
+            int posicaoDoProduto =  procurarPosicaoDoProdutoNaListaApartirDoCodigo(numeroInformado, loja.getProdutos());
+
+            if(posicaoDoProduto == -1){
+                System.out.println("Codigo informado não pertence a nenhum produto cadastrado.");
+
+            }else{
+                Produto produtoSelecionadoPeloUsuario = loja.getProdutos().remove(posicaoDoProduto);
+
+
+                loja.getUsuarioLogado().getProdutos().add(produtoSelecionadoPeloUsuario);
+                System.out.println(" O produto " + produtoSelecionadoPeloUsuario.getNome() + " foi comprado com sucesso! ");
+            }
+
+
+
+
+
+        }
+
+        if(textoIgual(escolhaDoCliente, "2")){
+
+            listarProdutos(loja.getUsuarioLogado().getProdutos());
+
+        }
+
+    if(textoIgual(escolhaDoCliente, "3")){
+
+        System.out.println(" o total comprado foi de: R$ " + calcularTotalCompra());
+    }
+
 
     }
 
     public static void exibirFuncionalidadesParaFuncionario(){
+        // O processo deve se repetir até o funcionario deslogar
 
-        System.out.println("Opções para FUNCIONARIOS:");
-        System.out.println("1 - Cadastrar Produto");
-        System.out.println("2 - Listar Produtos");
-        System.out.println("3 - Atualizar Produto");
-        System.out.println("4 - Deletar produto");
-        System.out.println("5 - Logout");
+        boolean programaEstaAtivo = true;
+
+        while (programaEstaAtivo) {
+
+            System.out.println("Opções para FUNCIONARIOS:");
+            System.out.println("1 - Cadastrar Produto");  // Aqui vamos manipular a lista de produtos da nossa loja
+            System.out.println("2 - Listar Produtos"); //  Aqui vamos manipular a lista de produtos da nossa loja
+            System.out.println("3 - Atualizar Produto");// Aqui vamos atualizar um produto dentro da lsta da nossa loja
+            System.out.println("4 - Deletar produto");// aqui vamos deletar um produto de dentro da lista da nossa loja
+            System.out.println("5 - Logout");
+
+            String escolhaDoFuncionario = pegarEscolhaDoUsuarioAPartirDasOpcoes("Escolha uma das opções disponiveis para o FUNCIONARIO:", new String[]{"1", "2", "3", "4", "5"});
+
+            if (textoIgual(escolhaDoFuncionario, "1")) {
+                Produto novoProduto = cadastrarNovoProduto();
+                loja.getProdutos().add(novoProduto);
+                System.out.println(novoProduto.getNome() + " cadastrado(a) com sucesso!");
+
+
+            }
+
+            if (textoIgual(escolhaDoFuncionario, "2")) {
+                listarProdutos(loja.getProdutos());
+            }
+
+            if (textoIgual(escolhaDoFuncionario, "3")) {
+                int codigoDoProduto = receberNumeroNoConsole("Informar codigo do produto");
+                int posicaoProduto = procurarPosicaoDoProdutoNaListaApartirDoCodigo(codigoDoProduto, loja.getProdutos());
+                if (posicaoProduto == -1) {
+
+                    System.out.println("Nenhum produto encontrado para esse codigo!");
+                } else {
+
+                    editarProduto(posicaoProduto);
+
+                }
+            }
+
+
+            if (textoIgual(escolhaDoFuncionario, "4")) {
+                int codigoDoProdutoQueVaiSerRemovido = receberNumeroNoConsole("Informe o codigo do produto:");
+                int posicaoDoProdutoASerRemovido = procurarPosicaoDoProdutoNaListaApartirDoCodigo(codigoDoProdutoQueVaiSerRemovido, loja.getProdutos());
+                if (posicaoDoProdutoASerRemovido == -1) {
+
+                    System.out.println("Nenhum produto encontrado para esse codigo!");
+                } else {
+
+                    loja.getProdutos().remove(posicaoDoProdutoASerRemovido);
+
+                    System.out.println("Produto deletado com sucesso!");
+
+                }
+
+            }
+
+            if(textoIgual(escolhaDoFuncionario, "5")){
+                System.out.println("O programa foi encerrado!");
+                programaEstaAtivo = false;
+
+            }
+        }
     }
 
     private static Usuario cadstrarNovoUsuario() {
@@ -107,7 +217,7 @@ public class ExecuacaoLojaOnline {
         PerfilUsuario perfil = escolherSeOUsuarioEClienteOuFuncionario();
 
 
-        Usuario novoUsuario = new Usuario();
+        Usuario novoUsuario = new Usuario(nome, email, senha, perfil);
 
         return novoUsuario;
 
@@ -198,7 +308,68 @@ public class ExecuacaoLojaOnline {
         return false;
     }
 
+    public void adicionarProdutoNaLista(Produto produto){
+        loja.getUsuarioLogado().getProdutos().add(produto);
+
+    }
+
+    public static double calcularTotalCompra(){
+        double total = 0;
+        for (Produto produto: loja.getUsuarioLogado().getProdutos()){
+            total += produto.getValor();
+        }
+        return total;
+    }
+
+    public static void listarProdutos(List<Produto> produtos){
+        System.out.println("Lista de produtos cadastrados:");
+
+        for (Produto produto : produtos){
+            System.out.println(produto);
+        }
+    }
+
+    public static int procurarPosicaoDoProdutoNaListaApartirDoCodigo(int codigo, List<Produto> produtos){
+
+        for (int i = 0; i <produtos.size();  i++) {
+            if (produtos.get(i).getCodigo() == codigo){
+                return i;
+            }
+        }
+        return -1;
+    }
+
+    public static Produto cadastrarNovoProduto(){
+        String nome = receberUmTextoDoConsole("Informe o nome do produto");
+
+        String descricao = receberUmTextoDoConsole("Informe uma descrição para o novo produto:");
+
+        double valor = receberNumeroNoConsole("Informe o valor desejado para o novo produto:");
+
+        Produto produto = new Produto(nome, descricao, valor);
+
+        return produto;
+    }
+
+    public static void editarProduto(int posicaoProduto){
+
+        System.out.println("Passe as novas informações do produto");
+
+        String nome = receberUmTextoDoConsole("Informe o nome do produto");
+
+        String descricao = receberUmTextoDoConsole("Informe uma nova descrição para o produto:");
+
+        double valor = receberNumeroNoConsole("Informe o novo valor desejado para o 1produto:");
+
+        loja.getProdutos().get(posicaoProduto).setNome(nome);
+        loja.getProdutos().get(posicaoProduto).setDescricao(descricao);
+        loja.getProdutos().get(posicaoProduto).setValor(valor);
+
+        System.out.println("Produto atualizado com sucesso!");
+    }
+
 }
+
 
 
 
