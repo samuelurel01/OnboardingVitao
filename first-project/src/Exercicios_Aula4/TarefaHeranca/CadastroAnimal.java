@@ -150,7 +150,7 @@ public class CadastroAnimal {
         }while(continuarPedirEscolhaDoUsuario);
 
         return escolhaDoUsuario;
-    }''1
+    }
 
     public static void listarAnimais(List<Carnivoro> carnivoros, List<Herbivoro> herbivoros){
         quebrarLinhas(2);
