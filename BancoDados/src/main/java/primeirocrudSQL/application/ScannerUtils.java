@@ -11,10 +11,8 @@ import java.util.Scanner;
 // 6° Numero decimal com opções
 // Criar um atributo que será um scanner, que sera usado por algumas funções.
 
-
 public class ScannerUtils {
     static Scanner scanner = new Scanner(System.in);
-
 
     public static String receberUmTextoDoConsole(String pergunta) {
         System.out.println(pergunta);
@@ -27,7 +25,6 @@ public class ScannerUtils {
         System.out.println(pergunta);
         int numeroInformado = scanner.nextInt();
 
-
         return numeroInformado;
     }
 
@@ -35,25 +32,39 @@ public class ScannerUtils {
         System.out.println(pergunta);
         double numeroDecimal = scanner.nextDouble();
 
-
         return numeroDecimal;
-
     }
 
-
-
+    // Receber uma resposta do usuario
+    // Validar se a resposta é uma das opções possiveis, sendo que para validar devemos ver se a opção escolhida(resposta) é igual a uma das opções disponiveis
+    // Devolver caso a resposta seja valida, caso contrario iremos repetir a pergunta e validar novamente
     public static String receberTextoComOpcoes(String pergunta, String[] opcoes){
+        boolean possoContinuarPedirRespostaDoUsuario = true; // Variavel auxiliar que controla se o processo deve-se repetir
+        String valorInformadoNoConsolePeloUsuario = "";
 
-        while () {
-            String opcaoEscolhida = receberUmTextoDoConsole(pergunta);
+        while(possoContinuarPedirRespostaDoUsuario) {// LOOP PARA REPETIR O PROCESSO
+            valorInformadoNoConsolePeloUsuario = receberUmTextoDoConsole(pergunta); // A função devolve uma string informada pelo usuario e armazenamos em uma variavel
 
-
+            if(opcaoEstaValida(valorInformadoNoConsolePeloUsuario,opcoes)){ // Verificamos se nossa resposta do usuario é igual a umas das opções disponiveis
+                return valorInformadoNoConsolePeloUsuario; // Devolvemos quando é valido
+            }else{
+                System.out.println("Opção informada não é valida!"); // Informamos que a opção está invalida e o processo se repete
+            }
         }
 
-
-
-        return opcaoEscolhida;
+        return valorInformadoNoConsolePeloUsuario;
     }
+
+    public static boolean opcaoEstaValida(String opcaoInformada,String[] opcoes){
+        for (int i = 0; i < opcoes.length; i++) {
+            if(opcaoInformada.equals(opcoes[i])){
+                return true;
+            }
+        }
+
+        return false;
+    }
+
 
 
 
