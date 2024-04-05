@@ -55,6 +55,41 @@ public class ScannerUtils {
         return valorInformadoNoConsolePeloUsuario;
     }
 
+    public static int receberNumeroComOpcoes(String pergunta, String [] opcoes){
+        boolean possoContinuarPedirRespostaDoUsuario = true;
+        int valorInformadoPeloUsuario = 0;
+
+        while (possoContinuarPedirRespostaDoUsuario){
+            valorInformadoPeloUsuario = receberNumeroNoConsole(pergunta);
+
+            if(opcaoEstaValidaInt(String.valueOf(valorInformadoPeloUsuario), opcoes)){
+                return valorInformadoPeloUsuario;
+            }else {
+                System.out.println("Opção informada não é valida!");
+            }
+
+        }
+        return valorInformadoPeloUsuario;
+    }
+
+    public static double opcaoEstaValidaDouble(String opcaoDoubleInformada, String[] opcoes){
+        boolean possoContinuarPedirRespostaUsuario = true;
+        double valorInformadoPeloUsuario = 0.0;
+
+        while (possoContinuarPedirRespostaUsuario){
+        valorInformadoPeloUsuario = receberDecimalNoConsole(opcaoDoubleInformada);
+
+        if(opcaoValidaDecimal(opcaoDoubleInformada,opcoes)){
+            return valorInformadoPeloUsuario;
+        }else {
+            System.out.println("Opção informada não é valida!");
+        }
+
+        }
+
+        return valorInformadoPeloUsuario;
+    }
+
     public static boolean opcaoEstaValida(String opcaoInformada,String[] opcoes){
         for (int i = 0; i < opcoes.length; i++) {
             if(opcaoInformada.equals(opcoes[i])){
@@ -65,9 +100,26 @@ public class ScannerUtils {
         return false;
     }
 
+    public static boolean opcaoEstaValidaInt(String opcaoNumericaInformada, String[] opcoes) {
+        for (int i = 0; i < opcaoNumericaInformada.length(); i++) {
+            if(opcaoNumericaInformada.equals(opcoes[i])){
+                return true;
+            }
 
+        }
 
+        return false;
+    }
 
+    public static boolean opcaoValidaDecimal(String opcaoDecimalInformada, String[] opcoes){
+        for (int i = 0; i < opcaoDecimalInformada.length(); i++) {
+            if(opcaoDecimalInformada.equals(opcoes[i])){
+                return true;
+            }
+        }
+
+        return false;
+    }
 
 
 }
