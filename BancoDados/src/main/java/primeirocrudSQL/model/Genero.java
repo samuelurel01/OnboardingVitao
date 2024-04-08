@@ -29,4 +29,14 @@ public class Genero {
         this.id = id;
     }
 
+    public Genero(){
+
+    }
+
+    public Genero(Integer id, String nome, String sigla){
+        setId(id);
+        setNome(nome);
+        setSigla(sigla);
+    }
+
 }
