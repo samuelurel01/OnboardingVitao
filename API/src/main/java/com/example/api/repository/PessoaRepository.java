@@ -40,7 +40,7 @@ public class PessoaRepository {
         List<Pessoa> pessoas = new ArrayList<>();
 
         try {
-            String sql = "SELECT * FROM Pessoa";
+            String sql = "SELECT * FROM pessoa";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(sql);
             ResultSet resultSet = preparedStatement.executeQuery();
 

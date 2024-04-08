@@ -37,5 +37,15 @@ public class PessoaController {
     public void deletarPessoa(@PathVariable Integer id) {
         pessoaRepository.deletarPorId(id);
     }
+
+    @GetMapping("/saudacao")
+    public String realizarSaudacao(){
+        return "Seja bem vindo amigo!";
+    }
+
+    @GetMapping("/saudacao/{nome}")
+    public String realizarSaudacaoNome(@PathVariable String nome){
+        return "Seja bem vindo " + nome;
+    }
 }
 
