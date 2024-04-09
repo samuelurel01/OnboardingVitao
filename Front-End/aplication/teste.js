@@ -13,5 +13,5 @@ nota.descricao = "nota foi atualizada!"
 //await notaService.atualizar(nota)
 
 
-await notaService.deletarPorId(32)
-await notaService.listar();
+//await notaService.deletarPorId(32)
+//await notaService.listar();

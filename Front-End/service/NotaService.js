@@ -3,6 +3,8 @@ import Nota from "../model/Nota.js"
 export default class NotaService {
 
     async listar(){
+        let notas = []
+
         await fetch('http://localhost:8080/api/notas', {
             method: 'GET',
             headers: {
@@ -11,10 +13,12 @@ export default class NotaService {
         })
         .then(response => response.json())
         .then(data => {
-            console.log(data)
+           notas = data
         }).catch(erro => {
             console.log(erro)
         })
+
+        return notas
     }
 
     async criar(titulo,descricao){
