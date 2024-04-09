@@ -2,6 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Front-End.iml" filepath="$PROJECT_DIR$/Front-End.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/OnboardingVitao.iml" filepath="$PROJECT_DIR$/.idea/OnboardingVitao.iml" />
       <module fileurl="file://$PROJECT_DIR$/first-project/first-project.iml" filepath="$PROJECT_DIR$/first-project/first-project.iml" />
     </modules>
