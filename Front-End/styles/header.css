@@ -1,0 +1,15 @@
+header {
+    width: 100vw;
+    height: 80px;
+    background-color: #161616;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.218);
+}
+
+header > h1 {
+    font-size: 30px;
+    color: #ffffff;
+}
