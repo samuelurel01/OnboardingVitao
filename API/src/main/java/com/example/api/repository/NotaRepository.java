@@ -68,6 +68,34 @@ public class NotaRepository {
         }
     }
 
+    public void atualizarTituloPorId(Nota notaAtualizada){
+        try{
+            String query = "UPDATE notas SET titulo = ? where id = ?";
+            PreparedStatement preparacaoDeDeclaracao = conexaoBanco.prepareStatement(query);
+            preparacaoDeDeclaracao.setString(1,notaAtualizada.getTitulo());
+            preparacaoDeDeclaracao.setString(2,notaAtualizada.getId().toString());
+
+            preparacaoDeDeclaracao.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+    public void atualizarDescricaoPorId(Nota notaAtualizada){
+        try{
+            String query = "UPDATE notas SET descricao = ? where id = ?";
+            PreparedStatement preparacaoDeDeclaracao = conexaoBanco.prepareStatement(query);
+            preparacaoDeDeclaracao.setString(1,notaAtualizada.getDescricao());
+            preparacaoDeDeclaracao.setString(2,notaAtualizada.getId().toString());
+
+            preparacaoDeDeclaracao.executeUpdate();
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
+
+
     public void deletarPorId(Integer id){
         try{
             String query = "DELETE FROM notas where id = ?";

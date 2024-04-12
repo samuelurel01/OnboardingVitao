@@ -35,5 +35,17 @@ public class NotaService {
         }
     }
 
+    public void atualizarTituloPorId(Nota notaAtualizada){
+        if(notaAtualizada != null){
+            notaRepository.atualizarTituloPorId(notaAtualizada);
+        }
+    }
+
+    public void atualizarDescricaoPorId(Nota notaAtualizada){
+        if(notaAtualizada != null){
+            notaRepository.atualizarDescricaoPorId(notaAtualizada);
+        }
+    }
+
 
 }

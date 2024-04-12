@@ -33,6 +33,16 @@ public class NotaController {
         notaService.atualizar(notaAtualizada);
     }
 
+    @PutMapping("/titulo")
+    public void atualizarTituloPorId(@RequestBody Nota notaAtualizada){
+        notaService.atualizarTituloPorId(notaAtualizada);
+    }
+
+    @PutMapping("/descricao")
+    public void atualizarDescricaoPorId(@RequestBody Nota notaAtualizada){
+        notaService.atualizarDescricaoPorId(notaAtualizada);
+    }
+
     @DeleteMapping("/{id}")
     public void deletarNota(@PathVariable Integer id){
         notaService.deletarNota(id);

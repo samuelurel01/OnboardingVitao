@@ -50,15 +50,36 @@ let criarTemplateHTMLdeNotaComDOM = (nota,essaNotaCriar) => {
         input.classList.add("newInput")
     }
 
-    if(!essaNotaCriar){
-        input.addEventListener("blur", (event) => {
-            alert(event.target.value)
-            
-        })
+    let atualizarTitulo = async (event) => {
+        
+        let notaAtualizada = new Nota()
+        notaAtualizada.titulo = event.target.value
+        notaAtualizada.id = nota.id
+        await service.atualizarTitulo(notaAtualizada)
 
-        textArea.addEventListener("blur", (event) => {
-            alert(event.target.value)
-        })
+        input.removeEventListener("focusout",atualizarTitulo)
+        setTimeout(() => {
+            input.addEventListener("focusout",atualizarTitulo)
+        },100)
+        
+    }
+
+    let atualizarDescricao = async (event) => {
+        let notaAtualizada = new Nota()
+        notaAtualizada.descricao = event.target.value
+        notaAtualizada.id = nota.id
+        await service.atualizarDescricao(notaAtualizada)
+
+
+        textArea.removeEventListener("focusout",atualizarDescricao)
+        setTimeout(() => {
+            textArea.addEventListener("focusout",atualizarDescricao)
+        },100)
+    }
+
+    if(!essaNotaCriar){
+        input.addEventListener("focusout", atualizarTitulo )
+        textArea.addEventListener("focusout", atualizarDescricao)
     }
 
     let button = document.createElement("button")

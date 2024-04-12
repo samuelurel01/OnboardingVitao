@@ -61,6 +61,42 @@ export default class NotaService {
         })
     }
 
+    async atualizarTitulo(notaAtualizada){
+        await fetch('http://localhost:8080/api/notas/titulo', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(notaAtualizada)
+        }).then(response => {
+            if(!response.ok){
+                throw new Error('Ocorreu um erro na solicitação PUT')
+            }
+
+            console.log("Solicitação put bem sucedida!")
+        }).catch(error => {
+            console.error('Erro: ', error)
+        })
+    }
+
+    async atualizarDescricao(notaAtualizada){
+        await fetch('http://localhost:8080/api/notas/descricao', {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(notaAtualizada)
+        }).then(response => {
+            if(!response.ok){
+                throw new Error('Ocorreu um erro na solicitação PUT')
+            }
+
+            console.log("Solicitação put bem sucedida!")
+        }).catch(error => {
+            console.error('Erro: ', error)
+        })
+    }
+
     async deletarPorId(id){
         await fetch(`http://localhost:8080/api/notas/${id}`,{
             method: 'DELETE',
