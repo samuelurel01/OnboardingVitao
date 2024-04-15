@@ -29,10 +29,17 @@ public class PraticaExercicios {
             return resultado;
     }
 
-
-
-
     // 2 - Faça uma função que escreva a tabuada de um numero informado pelo usuario no terminal
+    public static void escreverTabuada(int numero){
+
+        System.out.println("Tabuada de " + numero + ":");
+        for (int i = 1; i <= 10; i++) {
+            System.out.println(numero + " x " + i + " = " + (numero * i));
+        }
+    }
+
+
+
     // 3 - Faça uma função que diz se um numero é impar ou par
     // 4 - Faça uma função que irá fazer uma pergunta ao usuario, e ele deve responder no terminal
     // mas se dentro da resposta existir qualquer numero, o usuario deve ser notificado que escreveu um numero
