@@ -13,6 +13,8 @@ public class Task {
 
     private String titulo;
 
+    private Boolean concluida;
+
     public Integer getId() {
         return id;
     }
@@ -37,14 +39,23 @@ public class Task {
         this.titulo = titulo;
     }
 
+    public Boolean getConcluida() {
+        return concluida;
+    }
+
+    public void setConcluida(Boolean concluida) {
+        this.concluida = concluida;
+    }
+
     public Task() {
 
     }
 
-    public Task(Integer id, String descricao, String titulo){
+    public Task(Integer id, String descricao, String titulo, Boolean concluida){
         this.id = id;
         this.descricao = descricao;
         this.titulo = titulo;
+        this.concluida = concluida;
     }
 
 

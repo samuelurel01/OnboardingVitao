@@ -17,9 +17,9 @@ public class TaskRepository {
     public TaskRepository(Connection conexaoBanco){this.conexaoBanco = conexaoBanco;}
 
 
-    public void CriarTask(Task task){
+    public void criarTask(Task task){
         try {
-            String query = "INSERT INTO task (descricao,titulo) VALUES (?, ?)";
+            String query = "INSERT INTO task (descricao,titulo,concluida) VALUES (?, ?, false)";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
             preparedStatement.setString(1, task.getDescricao());
             preparedStatement.setString(2, task.getTitulo());
@@ -44,8 +44,9 @@ public class TaskRepository {
                 Integer id = resultSet.getInt("id");
                 String descricao = resultSet.getString("descricao");
                 String titulo = resultSet.getString("titulo");
+                Boolean concluida = resultSet.getBoolean("concluida");
 
-                tasks.add(new Task(id,descricao,titulo));
+                tasks.add(new Task(id,descricao,titulo,concluida));
             }
 
         } catch (SQLException e) {
@@ -56,11 +57,13 @@ public class TaskRepository {
 
     public void atualizar(Task taskAtualizada){
         try{
-            String query = "UPDATE tasks SET titulo = ?, descricao = ? where id = ?";
+            String query = "UPDATE tasks SET titulo = ?, descricao = ?, concluida = ? where id = ?";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
             preparedStatement.setString(1,taskAtualizada.getTitulo());
             preparedStatement.setString(2,taskAtualizada.getDescricao());
-            preparedStatement.setString(3,taskAtualizada.getId().toString());
+            preparedStatement.setString(3,taskAtualizada.getConcluida().toString());
+            preparedStatement.setString(4,taskAtualizada.getId().toString());
+
 
            preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -104,6 +107,23 @@ public class TaskRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void atualizarStatusDeConclusaoPorId(Integer id, Boolean concluida){
+        try {
+            String query = "UPDATE task SET concluida = ? WHERE id = ?";
+            PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
+            preparedStatement.setString(1,id.toString());
+            preparedStatement.setString(2,concluida.toString());
+
+            preparedStatement.executeUpdate();
+
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 
