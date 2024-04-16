@@ -1,6 +1,5 @@
 package com.example.api.service;
 
-import com.example.api.model.Nota;
 import com.example.api.model.Task;
 import com.example.api.repository.TaskRepository;
 

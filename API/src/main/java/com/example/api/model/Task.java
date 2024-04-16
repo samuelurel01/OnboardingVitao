@@ -2,7 +2,7 @@ package com.example.api.model;
 
 import jakarta.persistence.*;
 @Entity
-@Table(name = "Task")
+@Table(name = "task")
 public class Task {
 
     @Id

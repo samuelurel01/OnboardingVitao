@@ -1,10 +1,7 @@
 package com.example.api.controller;
 
-import com.example.api.model.Nota;
 import com.example.api.model.Task;
-import com.example.api.repository.NotaRepository;
 import com.example.api.repository.TaskRepository;
-import com.example.api.service.NotaService;
 import com.example.api.service.TaskService;
 import org.springframework.web.bind.annotation.*;
 
@@ -23,7 +20,9 @@ public class TaskController {
 
 
     @GetMapping
-    public List<Task> listarTasks(){return taskService.listar();}
+    public List<Task> listarTasks(){
+        return taskService.listar();
+    }
 
     @PostMapping
     public void criarTask(@RequestBody Task task){taskService.criarTask(task);}
@@ -33,16 +32,16 @@ public class TaskController {
         taskService.atualizar(taskAtualizada);
     }
 
-    @PutMapping
+    @PutMapping("atualizarPorId")
     public void atualizarTituloPorId(@RequestBody Task taskAtualizada){taskService.atualizarTituloPorId(taskAtualizada);}
 
-    @PutMapping
+    @PutMapping("atualizarDescricaoPorId")
     public void atualizarDescricaoPorId(@RequestBody Task taskAtualizada){taskService.atualizarDescricaoPorId(taskAtualizada);}
 
     @DeleteMapping
     public void deletarTask(@PathVariable Integer id){taskService.deletarTask(id);}
 
-    @PutMapping
+    @PutMapping("atualizarStatusConclusaoPorId")
     public void atualizarStatusDeConclusaoPorId(@RequestBody Integer id, Boolean concluida){taskService.atualizarStatusDeConclusaoPorId(id,concluida);}
 
 

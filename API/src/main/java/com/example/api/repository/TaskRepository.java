@@ -1,6 +1,5 @@
 package com.example.api.repository;
 
-import com.example.api.model.Nota;
 import com.example.api.model.Task;
 
 import java.sql.Connection;
@@ -57,13 +56,12 @@ public class TaskRepository {
 
     public void atualizar(Task taskAtualizada){
         try{
-            String query = "UPDATE tasks SET titulo = ?, descricao = ?, concluida = ? where id = ?";
+            String query = "UPDATE task SET titulo = ?, descricao = ?, concluida = ? where id = ?";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
             preparedStatement.setString(1,taskAtualizada.getTitulo());
             preparedStatement.setString(2,taskAtualizada.getDescricao());
             preparedStatement.setString(3,taskAtualizada.getConcluida().toString());
             preparedStatement.setString(4,taskAtualizada.getId().toString());
-
 
            preparedStatement.executeUpdate();
         } catch (SQLException e) {
@@ -73,7 +71,7 @@ public class TaskRepository {
 
     public void atualizarTituloPorId(Task taskAtualizada){
         try{
-            String query = "UPDATE notas SET titulo = ? where id = ?";
+            String query = "UPDATE task SET titulo = ? where id = ?";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
             preparedStatement.setString(1,taskAtualizada.getTitulo());
             preparedStatement.setString(2,taskAtualizada.getId().toString());
@@ -86,7 +84,7 @@ public class TaskRepository {
 
     public void atualizarDescricaoPorId(Task taskAtualizada){
         try{
-            String query = "UPDATE notas SET descricao = ? where id = ?";
+            String query = "UPDATE task SET descricao = ? where id = ?";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
             preparedStatement.setString(1,taskAtualizada.getDescricao());
             preparedStatement.setString(2,taskAtualizada.getId().toString());
@@ -99,7 +97,7 @@ public class TaskRepository {
 
     public void deletarPorId(Integer id){
         try{
-            String query = "DELETE FROM notas where id = ?";
+            String query = "DELETE FROM task where id = ?";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
            preparedStatement.setString(1,id.toString());
 
