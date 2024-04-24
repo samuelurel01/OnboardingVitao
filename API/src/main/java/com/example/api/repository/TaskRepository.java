@@ -109,10 +109,10 @@ public class TaskRepository {
 
     public void atualizarStatusDeConclusaoPorId(Integer id, Boolean concluida){
         try {
-            String query = "UPDATE task SET concluida = ? WHERE id = ?";
+            String query = "UPDATE task SET concluida = "+concluida+" WHERE id = ?";
             PreparedStatement preparedStatement = conexaoBanco.prepareStatement(query);
             preparedStatement.setString(1,id.toString());
-            preparedStatement.setString(2,concluida.toString());
+
 
             preparedStatement.executeUpdate();
 

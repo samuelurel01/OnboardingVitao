@@ -1,0 +1,11 @@
+main{
+    background-color: #f4e9e9;
+    width: 100%;
+    height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    padding-top: 35px;
+    
+} 

@@ -33,16 +33,21 @@ public class TaskController {
     }
 
     @PutMapping("atualizarPorId")
-    public void atualizarTituloPorId(@RequestBody Task taskAtualizada){taskService.atualizarTituloPorId(taskAtualizada);}
+    public void atualizarTituloPorId(@RequestBody Task taskAtualizada){
+        taskService.atualizarTituloPorId(taskAtualizada);
+
+    }
 
     @PutMapping("atualizarDescricaoPorId")
     public void atualizarDescricaoPorId(@RequestBody Task taskAtualizada){taskService.atualizarDescricaoPorId(taskAtualizada);}
 
-    @DeleteMapping
+    @DeleteMapping("{id}")
     public void deletarTask(@PathVariable Integer id){taskService.deletarTask(id);}
 
-    @PutMapping("atualizarStatusConclusaoPorId")
-    public void atualizarStatusDeConclusaoPorId(@RequestBody Integer id, Boolean concluida){taskService.atualizarStatusDeConclusaoPorId(id,concluida);}
+    @PutMapping("atualizarStatusConclusaoPorId/{id}")
+    public void atualizarStatusDeConclusaoPorId(@PathVariable Integer id, @RequestBody Boolean concluida) {
+        taskService.atualizarStatusDeConclusaoPorId(id, concluida);
+    }
 
 
 
